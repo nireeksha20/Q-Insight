@@ -1,0 +1,17 @@
+pair,alignment,status,difference_score,changed_pixel_fraction
+1,ORB homography (19 inliers),aligned,0.04021,0.10844
+2,ORB homography (37 inliers),aligned,0.04472,0.12322
+3,ORB homography (22 inliers),aligned,0.06832,0.06911
+4,Alignment rejected,manual_review,,
+5,ECC affine (0.759),aligned,0.05454,0.1483
+6,Alignment rejected,manual_review,,
+7,Alignment rejected,manual_review,,
+8,ECC affine (0.932),aligned,0.02044,0.13333
+9,Alignment rejected,manual_review,,
+10,ORB homography (43 inliers),aligned,0.04795,0.14632
+11,Alignment rejected,manual_review,,
+12,Alignment rejected,manual_review,,
+13,ORB homography (55 inliers),aligned,0.05295,0.14021
+14,ECC affine (0.663),aligned,0.04253,0.16961
+15,Alignment rejected,manual_review,,
+16,Alignment rejected,manual_review,,

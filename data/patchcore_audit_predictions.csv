@@ -1,0 +1,13 @@
+image,path,actual,score
+image1.jpg,C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset_audit_v1\test\good\image1.jpg,0,0.21454626321792603
+image10.jpg,C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset_audit_v1\test\good\image10.jpg,0,0.44346553087234497
+image11.jpg,C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset_audit_v1\test\good\image11.jpg,0,0.35884225368499756
+image16.jpg,C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset_audit_v1\test\good\image16.jpg,0,0.1238524317741394
+image2.jpg,C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset_audit_v1\test\good\image2.jpg,0,1.0
+image3.jpg,C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset_audit_v1\test\good\image3.jpg,0,1.0
+image1.jpg,C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset_audit_v1\test\defective\image1.jpg,1,0.5963782668113708
+image10.jpg,C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset_audit_v1\test\defective\image10.jpg,1,0.5420392155647278
+image11.jpg,C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset_audit_v1\test\defective\image11.jpg,1,0.5553168654441833
+image16.jpg,C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset_audit_v1\test\defective\image16.jpg,1,0.1608203649520874
+image2.jpg,C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset_audit_v1\test\defective\image2.jpg,1,0.7985363006591797
+image3.jpg,C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset_audit_v1\test\defective\image3.jpg,1,1.0

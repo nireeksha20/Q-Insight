@@ -1,0 +1,31 @@
+Q-INSIGHT VALIDATION SUMMARY
+================================
+Pairs available: 16
+Successfully aligned: 8
+Manual review/errors: 8
+
+VISUAL DIFFERENCE METRICS
+------------------------
+Mean difference score: 0.04646
+Median difference score: 0.04634
+Minimum difference score: 0.02044
+Maximum difference score: 0.06832
+Mean changed-pixel fraction: 13.0%
+
+PAIRS RANKED BY DIFFERENCE SCORE
+(Higher scores indicate more visual difference, not necessarily more damage)
+01. Pair 03: score=0.06832, changed=6.9%
+02. Pair 05: score=0.05454, changed=14.8%
+03. Pair 13: score=0.05295, changed=14.0%
+04. Pair 10: score=0.04795, changed=14.6%
+05. Pair 02: score=0.04472, changed=12.3%
+06. Pair 14: score=0.04253, changed=17.0%
+07. Pair 01: score=0.04021, changed=10.8%
+08. Pair 08: score=0.02044, changed=13.3%
+
+LIMITATIONS
+- These are visual-difference metrics, not calibrated defect probabilities.
+- A high score can result from lighting, perspective, or texture differences.
+- Alignment failures are excluded from aggregate score statistics.
+- Detection accuracy, precision, recall, and F1 require ground-truth defect labels
+  and a defined prediction rule evaluated on suitable validation data.

@@ -4,3 +4,19 @@ __pycache__/
 *.pyc
 .env
 data/*.db
+
+
+# Generated PatchCore model checkpoints and experiment outputs
+data/patchcore_results/
+data/patchcore_audit_results/
+data/patchcore_audit_v2_results/
+
+# Python environments
+backend/.venv/
+backend/.venv-anomaly/
+**/__pycache__/
+*.pyc
+
+# Frontend dependencies
+frontend/node_modules/
+frontend/dist/

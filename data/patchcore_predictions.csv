@@ -1,0 +1,21 @@
+image_path,ground_truth,anomaly_score
+C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset\test\defective\image1.jpg,defective,1.0
+C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset\test\defective\image10.jpg,defective,1.0
+C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset\test\defective\image11.jpg,defective,1.0
+C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset\test\defective\image12.jpg,defective,0.816918134689331
+C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset\test\defective\image13.jpg,defective,0.8061345219612122
+C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset\test\defective\image14.jpg,defective,1.0
+C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset\test\defective\image15.jpg,defective,1.0
+C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset\test\defective\image16.jpg,defective,0.8963347673416138
+C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset\test\defective\image2.jpg,defective,1.0
+C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset\test\defective\image3.jpg,defective,1.0
+C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset\test\defective\image4.jpg,defective,1.0
+C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset\test\defective\image5.jpg,defective,0.6309841275215149
+C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset\test\defective\image6.jpg,defective,1.0
+C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset\test\defective\image7.jpg,defective,0.5053308010101318
+C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset\test\defective\image8.jpg,defective,0.8426783680915833
+C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset\test\defective\image9.jpg,defective,1.0
+C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset\test\good\image13.jpg,good,0.6566435098648071
+C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset\test\good\image14.jpg,good,0.8353953957557678
+C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset\test\good\image15.jpg,good,1.0
+C:\Users\H P\Documents\PROJECTS\Q-Insight\data\anomalib_dataset\test\good\image16.jpg,good,0.8715521097183228

@@ -1,0 +1,35 @@
+Q-INSIGHT CANDIDATE THRESHOLD EVALUATION
+==========================================
+Total matched pairs: 16
+Aligned pairs: 8
+Manual review required: 8
+
+A pair is flagged when its visual-difference score is >= threshold.
+These scores compare a defective image with its clean reference.
+They are NOT independent per-image defect predictions.
+
+THRESHOLD RESULTS
+------------------
+Threshold | Flagged | Not flagged | Coverage of aligned pairs
+   0.020 |       8 |           0 | 100.0%
+   0.030 |       7 |           1 | 87.5%
+   0.040 |       7 |           1 | 87.5%
+   0.050 |       3 |           5 | 37.5%
+   0.060 |       1 |           7 | 12.5%
+   0.070 |       0 |           8 | 0.0%
+   0.080 |       0 |           8 | 0.0%
+   0.100 |       0 |           8 | 0.0%
+
+INTERPRETATION
+- Higher thresholds flag fewer paired comparisons.
+- Lower thresholds flag more paired comparisons.
+- Coverage is not accuracy, recall, precision, or F1-score.
+- These are all known defective-versus-clean comparisons.
+- No independent clean inspection comparisons are included.
+- Alignment failures remain manual-review cases.
+
+NEXT REQUIREMENT
+Collect independent clean inspection images under normal variation,
+then evaluate complete inspections using a fixed threshold.
+Choose the final threshold on validation data and assess it on a
+separate test set that was not used to tune the system.

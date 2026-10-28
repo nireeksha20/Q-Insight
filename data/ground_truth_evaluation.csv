@@ -1,0 +1,17 @@
+pair,clean_ground_truth,defective_ground_truth,alignment_status,difference_score,changed_pixel_fraction,defect_region_review,difference_highlights_actual_defect,review_notes
+image1.jpg,good,defective,aligned,0.0402,0.1084,,,Review heatmap against actual damage
+image2.jpg,good,defective,aligned,0.0447,0.1232,,,Review heatmap against actual damage
+image3.jpg,good,defective,aligned,0.0683,0.0691,,,Review heatmap against actual damage
+image4.jpg,good,defective,manual_review,,,,,Alignment failed; inspect manually
+image5.jpg,good,defective,aligned,0.0545,0.1483,,,Review heatmap against actual damage
+image6.jpg,good,defective,manual_review,,,,,Alignment failed; inspect manually
+image7.jpg,good,defective,manual_review,,,,,Alignment failed; inspect manually
+image8.jpg,good,defective,aligned,0.0204,0.1333,,,Review heatmap against actual damage
+image9.jpg,good,defective,manual_review,,,,,Alignment failed; inspect manually
+image10.jpg,good,defective,aligned,0.048,0.1463,,,Review heatmap against actual damage
+image11.jpg,good,defective,manual_review,,,,,Alignment failed; inspect manually
+image12.jpg,good,defective,manual_review,,,,,Alignment failed; inspect manually
+image13.jpg,good,defective,aligned,0.0529,0.1402,,,Review heatmap against actual damage
+image14.jpg,good,defective,aligned,0.0425,0.1696,,,Review heatmap against actual damage
+image15.jpg,good,defective,manual_review,,,,,Alignment failed; inspect manually
+image16.jpg,good,defective,manual_review,,,,,Alignment failed; inspect manually

@@ -1,0 +1,17 @@
+pair,reference,test_image,reference_label,test_label,difference_score,status
+1,image1.jpg,image1.jpg,good,defective,0.28669,Compared
+2,image2.jpg,image2.jpg,good,defective,0.1031,Compared
+3,image3.jpg,image3.jpg,good,defective,0.51932,Compared
+4,image4.jpg,image4.jpg,good,defective,0.12748,Compared
+5,image5.jpg,image5.jpg,good,defective,0.19667,Compared
+6,image6.jpg,image6.jpg,good,defective,0.40851,Compared
+7,image7.jpg,image7.jpg,good,defective,0.23255,Compared
+8,image8.jpg,image8.jpg,good,defective,0.08266,Compared
+9,image9.jpg,image9.jpg,good,defective,0.06601,Compared
+10,image10.jpg,image10.jpg,good,defective,0.21364,Compared
+11,image11.jpg,image11.jpg,good,defective,0.3322,Compared
+12,image12.jpg,image12.jpg,good,defective,0.16337,Compared
+13,image13.jpg,image13.jpg,good,defective,0.10925,Compared
+14,image14.jpg,image14.jpg,good,defective,0.08641,Compared
+15,image15.jpg,image15.jpg,good,defective,0.26228,Compared
+16,image16.jpg,image16.jpg,good,defective,0.14381,Compared

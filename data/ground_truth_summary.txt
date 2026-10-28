@@ -1,0 +1,30 @@
+Q-INSIGHT GROUND-TRUTH REVIEW
+==================================
+Matched pairs in dataset: 16
+Pairs with usable alignment: 8
+Pairs needing manual review: 8
+
+KNOWN LABELS
+- Each good/defective folder pair is treated as a matched example.
+- The defective image is the positive example.
+- The clean image is its reference, not an independent negative test.
+
+VISUAL DIFFERENCE BASELINE
+Mean difference score: 0.04644
+Median difference score: 0.04635
+Minimum difference score: 0.02040
+Maximum difference score: 0.06830
+Mean changed-pixel fraction: 13.0%
+
+METRICS NOT YET VALIDLY AVAILABLE
+- Accuracy, specificity, precision, recall and F1-score.
+- These require independent predictions and ground-truth outcomes
+  for both defective and non-defective inspection samples.
+
+NEXT DATA REQUIRED
+- Capture additional clean inspection images for each product type.
+- Include normal changes in lighting, angle and background.
+- Record whether each highlighted region overlaps the real defect.
+- Keep a separate test set that is not used to tune thresholds.
+
+Review spreadsheet: C:\Users\H P\Documents\PROJECTS\Q-Insight\data\ground_truth_evaluation.csv

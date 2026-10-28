@@ -1,0 +1,33 @@
+﻿pair_number,label_from_folder,filename,relative_path,width,height,pair_review_decision,review_notes,label_independently_verified,file_status,original_file_modified
+1,good,image1.jpg,data\validation\good\image1.jpg,699,691,Keep candidate,Cracked plate and damaged screw areas; close visual match.,No,OK,No
+1,defective,image1.jpg,data\validation\defective\image1.jpg,707,691,Keep candidate,Cracked plate and damaged screw areas; close visual match.,No,OK,No
+2,good,image2.jpg,data\validation\good\image2.jpg,704,768,Keep candidate,"Visible cracking, wear, and damage to the mechanism.",No,OK,No
+2,defective,image2.jpg,data\validation\defective\image2.jpg,704,768,Keep candidate,"Visible cracking, wear, and damage to the mechanism.",No,OK,No
+3,good,image3.jpg,data\validation\good\image3.jpg,703,768,Keep candidate,"Prominent cracks, dark marks, and damaged socket components.",No,OK,No
+3,defective,image3.jpg,data\validation\defective\image3.jpg,707,768,Keep candidate,"Prominent cracks, dark marks, and damaged socket components.",No,OK,No
+4,good,image4.jpg,data\validation\good\image4.jpg,263,438,Review,Aged plates and exposed wiring; construction differences need review.,No,OK,No
+4,defective,image4.jpg,data\validation\defective\image4.jpg,248,441,Review,Aged plates and exposed wiring; construction differences need review.,No,OK,No
+5,good,image5.jpg,data\validation\good\image5.jpg,85,127,Review,"Similar outlet layout, but low resolution and appearance differences.",No,OK,No
+5,defective,image5.jpg,data\validation\defective\image5.jpg,71,129,Review,"Similar outlet layout, but low resolution and appearance differences.",No,OK,No
+6,good,image6.jpg,data\validation\good\image6.jpg,267,256,Exclude from paired evaluation,Different switch plate designs.,No,OK,No
+6,defective,image6.jpg,data\validation\defective\image6.jpg,267,253,Exclude from paired evaluation,Different switch plate designs.,No,OK,No
+7,good,image7.jpg,data\validation\good\image7.jpg,210,300,Exclude from paired evaluation,Plate color and lighting differ; defect is uncertain.,No,OK,No
+7,defective,image7.jpg,data\validation\defective\image7.jpg,199,296,Exclude from paired evaluation,Plate color and lighting differ; defect is uncertain.,No,OK,No
+8,good,image8.jpg,data\validation\good\image8.jpg,199,298,Exclude from paired evaluation,"Possible damage, but product and viewpoint are uncertain.",No,OK,No
+8,defective,image8.jpg,data\validation\defective\image8.jpg,207,305,Exclude from paired evaluation,"Possible damage, but product and viewpoint are uncertain.",No,OK,No
+9,good,image9.jpg,data\validation\good\image9.jpg,198,206,Review,"Visible plate damage, but framing and plate proportions differ.",No,OK,No
+9,defective,image9.jpg,data\validation\defective\image9.jpg,124,211,Review,"Visible plate damage, but framing and plate proportions differ.",No,OK,No
+10,good,image10.jpg,data\validation\good\image10.jpg,209,116,Keep candidate,Similar horizontal outlet layout and background; confirm defect label.,No,OK,No
+10,defective,image10.jpg,data\validation\defective\image10.jpg,214,134,Keep candidate,Similar horizontal outlet layout and background; confirm defect label.,No,OK,No
+11,good,image11.jpg,data\validation\good\image11.jpg,278,433,Keep candidate,Cover is missing and the outlet mechanism is exposed.,No,OK,No
+11,defective,image11.jpg,data\validation\defective\image11.jpg,278,433,Keep candidate,Cover is missing and the outlet mechanism is exposed.,No,OK,No
+12,good,image12.jpg,data\validation\good\image12.jpg,103,150,Review,"Similar switch layout, but plate color and appearance differ.",No,OK,No
+12,defective,image12.jpg,data\validation\defective\image12.jpg,123,150,Review,"Similar switch layout, but plate color and appearance differ.",No,OK,No
+13,good,image13.jpg,data\validation\good\image13.jpg,105,124,Exclude from paired evaluation,Very small images; defect cannot be assessed confidently.,No,OK,No
+13,defective,image13.jpg,data\validation\defective\image13.jpg,109,129,Exclude from paired evaluation,Very small images; defect cannot be assessed confidently.,No,OK,No
+14,good,image14.jpg,data\validation\good\image14.jpg,114,101,Exclude from paired evaluation,Plain plate versus plate with a switch; configuration differs.,No,OK,No
+14,defective,image14.jpg,data\validation\defective\image14.jpg,115,109,Exclude from paired evaluation,Plain plate versus plate with a switch; configuration differs.,No,OK,No
+15,good,image15.jpg,data\validation\good\image15.jpg,112,101,Exclude from paired evaluation,Different plate appearance; defect is uncertain.,No,OK,No
+15,defective,image15.jpg,data\validation\defective\image15.jpg,116,102,Exclude from paired evaluation,Different plate appearance; defect is uncertain.,No,OK,No
+16,good,image16.jpg,data\validation\good\image16.jpg,259,330,Keep candidate,Similar double-switch design; damaged or separated edge is visible.,No,OK,No
+16,defective,image16.jpg,data\validation\defective\image16.jpg,296,330,Keep candidate,Similar double-switch design; damaged or separated edge is visible.,No,OK,No

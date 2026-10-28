@@ -1,0 +1,20 @@
+﻿source,destination,split,label,pair_number,selection_reason
+data\validation\good\image4.jpg,data\anomalib_dataset_audit_v1\train\good\image4.jpg,train,good,4,Non-selected normal image reserved for training
+data\validation\good\image5.jpg,data\anomalib_dataset_audit_v1\train\good\image5.jpg,train,good,5,Non-selected normal image reserved for training
+data\validation\good\image6.jpg,data\anomalib_dataset_audit_v1\train\good\image6.jpg,train,good,6,Non-selected normal image reserved for training
+data\validation\good\image7.jpg,data\anomalib_dataset_audit_v1\train\good\image7.jpg,train,good,7,Non-selected normal image reserved for training
+data\validation\good\image8.jpg,data\anomalib_dataset_audit_v1\train\good\image8.jpg,train,good,8,Non-selected normal image reserved for training
+data\validation\good\image9.jpg,data\anomalib_dataset_audit_v1\train\good\image9.jpg,train,good,9,Non-selected normal image reserved for training
+data\validation\good\image12.jpg,data\anomalib_dataset_audit_v1\train\good\image12.jpg,train,good,12,Non-selected normal image reserved for training
+data\validation\good\image1.jpg,data\anomalib_dataset_audit_v1\test\good\image1.jpg,test,good,1,Candidate normal evaluation image
+data\validation\defective\image1.jpg,data\anomalib_dataset_audit_v1\test\defective\image1.jpg,test,defective,1,Candidate defective evaluation image
+data\validation\good\image2.jpg,data\anomalib_dataset_audit_v1\test\good\image2.jpg,test,good,2,Candidate normal evaluation image
+data\validation\defective\image2.jpg,data\anomalib_dataset_audit_v1\test\defective\image2.jpg,test,defective,2,Candidate defective evaluation image
+data\validation\good\image3.jpg,data\anomalib_dataset_audit_v1\test\good\image3.jpg,test,good,3,Candidate normal evaluation image
+data\validation\defective\image3.jpg,data\anomalib_dataset_audit_v1\test\defective\image3.jpg,test,defective,3,Candidate defective evaluation image
+data\validation\good\image10.jpg,data\anomalib_dataset_audit_v1\test\good\image10.jpg,test,good,10,Candidate normal evaluation image
+data\validation\defective\image10.jpg,data\anomalib_dataset_audit_v1\test\defective\image10.jpg,test,defective,10,Candidate defective evaluation image
+data\validation\good\image11.jpg,data\anomalib_dataset_audit_v1\test\good\image11.jpg,test,good,11,Candidate normal evaluation image
+data\validation\defective\image11.jpg,data\anomalib_dataset_audit_v1\test\defective\image11.jpg,test,defective,11,Candidate defective evaluation image
+data\validation\good\image16.jpg,data\anomalib_dataset_audit_v1\test\good\image16.jpg,test,good,16,Candidate normal evaluation image
+data\validation\defective\image16.jpg,data\anomalib_dataset_audit_v1\test\defective\image16.jpg,test,defective,16,Candidate defective evaluation image

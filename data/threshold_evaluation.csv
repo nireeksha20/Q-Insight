@@ -1,0 +1,9 @@
+threshold,aligned_pairs,flagged_pairs,not_flagged_pairs,coverage_fraction,flagged_pair_ids,not_flagged_pair_ids,manual_review_pairs
+0.02,8,8,0,1.0,image1.jpg; image2.jpg; image3.jpg; image5.jpg; image8.jpg; image10.jpg; image13.jpg; image14.jpg,,8
+0.03,8,7,1,0.875,image1.jpg; image2.jpg; image3.jpg; image5.jpg; image10.jpg; image13.jpg; image14.jpg,image8.jpg,8
+0.04,8,7,1,0.875,image1.jpg; image2.jpg; image3.jpg; image5.jpg; image10.jpg; image13.jpg; image14.jpg,image8.jpg,8
+0.05,8,3,5,0.375,image3.jpg; image5.jpg; image13.jpg,image1.jpg; image2.jpg; image8.jpg; image10.jpg; image14.jpg,8
+0.06,8,1,7,0.125,image3.jpg,image1.jpg; image2.jpg; image5.jpg; image8.jpg; image10.jpg; image13.jpg; image14.jpg,8
+0.07,8,0,8,0.0,,image1.jpg; image2.jpg; image3.jpg; image5.jpg; image8.jpg; image10.jpg; image13.jpg; image14.jpg,8
+0.08,8,0,8,0.0,,image1.jpg; image2.jpg; image3.jpg; image5.jpg; image8.jpg; image10.jpg; image13.jpg; image14.jpg,8
+0.1,8,0,8,0.0,,image1.jpg; image2.jpg; image3.jpg; image5.jpg; image8.jpg; image10.jpg; image13.jpg; image14.jpg,8
