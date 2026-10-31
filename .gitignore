@@ -38,3 +38,14 @@ data/training_image_review.csv
 data/candidate_pairs_review.jpg
 data/patchcore_training_review.jpg
 data/single_switch_candidate_review.jpg
+
+
+# Local faceplate annotations and preview images
+data/faceplate_annotations/
+
+# Local pilot images and dataset validation outputs
+data/real_surface_pilot/
+data/real_switch_pilot/
+
+# Local synthetic datasets and prepared splits
+data/single_switch_v1/
