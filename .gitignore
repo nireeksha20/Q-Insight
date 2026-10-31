@@ -20,3 +20,21 @@ backend/.venv-anomaly/
 # Frontend dependencies
 frontend/node_modules/
 frontend/dist/
+
+# Q-Insight generated experiment outputs
+data/patchcore_single_switch_v1_results/
+data/patchcore_single_switch_v1_evaluation/
+data/real_faceplate_heatmaps/
+data/real_faceplate_reports/
+
+# Generated analysis files
+data/patchcore_single_switch_v1_diagnostic.csv
+data/patchcore_single_switch_v1_predictions.csv
+data/real_faceplate_patchcore_scores.csv
+data/resolution_comparison.csv
+data/training_image_review.csv
+
+# Generated visual review images
+data/candidate_pairs_review.jpg
+data/patchcore_training_review.jpg
+data/single_switch_candidate_review.jpg
