@@ -105,6 +105,52 @@ def read_image(image_path: Path):
     return cv2.imdecode(buffer, cv2.IMREAD_COLOR)
 
 
+def analyze_discoloration(image: np.ndarray) -> dict:
+    """
+    Estimate yellow/brown color coverage for diagnostic purposes.
+    This is a heuristic, not a trained discoloration classifier.
+    """
+    lab = cv2.cvtColor(image, cv2.COLOR_BGR2LAB)
+    lightness = lab[:, :, 0].astype(np.int16)
+    yellow_blue = lab[:, :, 2].astype(np.int16)
+
+    # Ignore very dark edges and nearly white glare.
+    valid = (lightness >= 65) & (lightness <= 240)
+
+    # Estimate the amount of warm/yellow coloration.
+    yellow_mask = valid & (yellow_blue >= 137)
+
+    # Estimate darker yellow/brown regions.
+    brown_mask = (
+        valid
+        & (lightness <= 190)
+        & (yellow_blue >= 135)
+    )
+
+    valid_count = int(np.count_nonzero(valid))
+
+    if valid_count == 0:
+        return {
+            "discoloration_score": 0.0,
+            "yellow_pixel_ratio": 0.0,
+            "brown_pixel_ratio": 0.0,
+        }
+
+    yellow_ratio = (
+        np.count_nonzero(yellow_mask) / valid_count
+    )
+    brown_ratio = (
+        np.count_nonzero(brown_mask) / valid_count
+    )
+
+    return {
+        "discoloration_score": round(
+            100 * (0.6 * yellow_ratio + 0.4 * brown_ratio), 2
+        ),
+        "yellow_pixel_ratio": round(100 * yellow_ratio, 2),
+        "brown_pixel_ratio": round(100 * brown_ratio, 2),
+    }
+
 # --------------------------------------------------
 # VISUAL DIFFERENCE HEATMAP
 # --------------------------------------------------
@@ -317,140 +363,164 @@ def create_difference_map(
 
     return f"data:image/jpeg;base64,{encoded_string}"
 
-
-
 # --------------------------------------------------
 # INSPECTION ENGINE
 # --------------------------------------------------
 
-
 def inspect_image(image_path: Path):
-    image = read_image(image_path)
+    """Inspect a product image using the trained PatchCore model."""
+    import base64
+    import cv2
+    import numpy as np
+    import torch
+    from anomalib.data import ImageBatch
 
+    image = cv2.imread(str(image_path))
     if image is None:
-        raise HTTPException(
-            status_code=400,
-            detail="Invalid or unreadable uploaded image.",
-        )
+        raise ValueError("Unable to read the uploaded image.")
 
     height, width = image.shape[:2]
-
     if height < 32 or width < 32:
-        raise HTTPException(
-            status_code=400,
-            detail="Image must be at least 32 x 32 pixels.",
+        raise ValueError(
+            "Image dimensions must be at least 32 x 32 pixels."
         )
 
-    if not REFERENCE_PATH.exists():
-        return {
-            "defect_label": "Reference required",
-            "inspection_status": "Pending reference",
-            "anomaly_score": None,
-            "similarity_score": None,
-            "difference_map": None,
-            "explanation": (
-                "Image received successfully, but a reference image "
-                "is required for visual comparison."
-            ),
-            "recommended_action": (
-                "Configure a clean reference image of the same "
-                "product model under similar capture conditions."
-            ),
-        }
+    model = load_patchcore_model()
 
-    reference = read_image(REFERENCE_PATH)
+        # Match the image normalization used by Anomalib's
+    # default ImageNet-pretrained backbone pipeline.
+    from PIL import Image
+    from torchvision import transforms
+    from anomalib.data import ImageBatch
 
-    if reference is None:
-        raise HTTPException(
-            status_code=500,
-            detail="The configured reference image could not be read.",
+    rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    pil_image = Image.fromarray(rgb)
+
+    preprocess = transforms.Compose([
+        transforms.Resize((256, 256)),
+        transforms.ToTensor(),
+    ])
+
+    tensor = preprocess(pil_image).unsqueeze(0)
+    batch = ImageBatch(image=tensor)
+
+    with torch.inference_mode():
+        predictions = model.predict_step(batch, 0)
+
+    # Anomalib may return a batch-like prediction container,
+    # not a Python list. Do not index it using predictions[0].
+    score_tensor = getattr(predictions, "pred_score", None)
+
+    if score_tensor is None:
+        raise RuntimeError(
+            "No pred_score found. Returned prediction type: "
+            f"{type(predictions).__name__}; "
+            f"available fields: {getattr(predictions, '__dict__', {}).keys()}"
         )
 
-    # Crop the product independently in both images.
-    image_crop = crop_product_region(image)
-    reference_crop = crop_product_region(reference)
-
-    # Align the reference to the uploaded product where possible.
-    aligned_reference = align_reference_to_image(
-        reference_crop, image_crop
+    anomaly_score = float(
+        score_tensor.detach().cpu().reshape(-1)[0]
     )
 
-    image_gray = cv2.cvtColor(
-        image_crop, cv2.COLOR_BGR2GRAY
-    )
-    reference_gray = cv2.cvtColor(
-        aligned_reference, cv2.COLOR_BGR2GRAY
-    )
-
-    difference = cv2.absdiff(image_gray, reference_gray)
-
-    # This is a normalized pixel-difference score, not a probability.
-    anomaly_score = round(
-        float(np.mean(difference) / 255.0), 4
+    color_diagnostic = analyze_discoloration(image)
+    print(
+        f"[Q-Insight] discoloration diagnostic="
+        f"{color_diagnostic['discoloration_score']:.2f}"
     )
 
-    similarity = cv2.matchTemplate(
-        image_gray,
-        reference_gray,
-        cv2.TM_CCOEFF_NORMED,
-    )[0][0]
+    anomaly_map_tensor = getattr(predictions, "anomaly_map", None)
+    difference_map = None
 
-    similarity_score = (
-        round(float(similarity), 4)
-        if np.isfinite(similarity)
-        else None
+    if anomaly_map_tensor is not None:
+        anomaly_map = (
+            anomaly_map_tensor.detach().cpu().squeeze().numpy()
+        )
+
+        if anomaly_map.ndim == 2 and anomaly_map.size:
+            anomaly_map = cv2.resize(
+                anomaly_map.astype(np.float32),
+                (width, height),
+                interpolation=cv2.INTER_LINEAR,
+            )
+
+            heatmap = cv2.normalize(
+                anomaly_map, None, 0, 255, cv2.NORM_MINMAX
+            ).astype(np.uint8)
+
+            heatmap_color = cv2.applyColorMap(
+                heatmap, cv2.COLORMAP_JET
+            )
+            overlay = cv2.addWeighted(
+                image, 0.60, heatmap_color, 0.40, 0
+            )
+
+            success, encoded = cv2.imencode(".jpg", overlay)
+            if success:
+                difference_map = (
+                    "data:image/jpeg;base64,"
+                    + base64.b64encode(
+                        encoded.tobytes()
+                    ).decode("utf-8")
+                )
+
+    
+    threshold = PATCHCORE_THRESHOLD
+
+    # Separate discoloration signal from the PatchCore anomaly score.
+    discoloration_score = color_diagnostic["discoloration_score"]
+    DISCOLORATION_THRESHOLD = 80.0  # Provisional; validate using clean and discolored samples.
+
+    is_patchcore_anomaly = anomaly_score >= threshold
+    is_discoloration_suspected = (
+        discoloration_score >= DISCOLORATION_THRESHOLD
     )
 
-    difference_map = create_difference_map(
-        image_crop, aligned_reference
-    )
+    is_anomaly = is_patchcore_anomaly or is_discoloration_suspected
 
-    # Keep the existing conservative, preliminary comparison rule.
-    close_match = (
-        anomaly_score <= 0.02
-        and similarity_score is not None
-        and similarity_score >= 0.98
-    )
 
-    if close_match:
-        return {
-            "defect_label": (
-                "No significant visual difference detected"
-            ),
-            "inspection_status": "Reference match",
-            "anomaly_score": anomaly_score,
-            "similarity_score": similarity_score,
-            "difference_map": difference_map,
-            "explanation": (
-                "The cropped image closely matches the reference "
-                "under the current comparison method. This does "
-                "not guarantee that the product is defect-free."
-            ),
-            "recommended_action": (
-                "Treat the result as provisional and continue "
-                "normal quality-control checks."
-            ),
-        }
+    print(
+        f"[Q-Insight] image={Path(image_path).name} "
+        f"score={anomaly_score:.6f} "
+        f"threshold={threshold:.6f}"
+    )
 
     return {
-        "defect_label": "Visual difference flagged",
-        "inspection_status": "Review required",
+        "defect_label": (
+            "Potential defect" if is_anomaly
+            else "No anomaly detected"
+        ),
+        "inspection_status": (
+            "Review required" if is_anomaly else "Passed"
+        ),
         "anomaly_score": anomaly_score,
-        "similarity_score": similarity_score,
+        "similarity_score": None,
         "difference_map": difference_map,
         "explanation": (
-            "The cropped product image differs from the reference. "
-            "Differences may be caused by defects, alignment, "
-            "lighting, or normal product variation."
+            f"PatchCore anomaly score: {anomaly_score:.4f}. "
+            f"Discoloration diagnostic: {discoloration_score:.2f}. "
+            + (
+                "The discoloration diagnostic exceeded its provisional "
+                "threshold; visually verify possible yellowing or browning."
+                if is_discoloration_suspected
+                else (
+                    "The PatchCore score exceeded its provisional threshold; "
+                    "inspect the highlighted regions."
+                    if is_patchcore_anomaly
+                    else
+                    "Neither provisional threshold was exceeded. "
+                    "This does not guarantee that the product is defect-free."
+                )
+            )
         ),
         "recommended_action": (
-            "Review the cropped image and difference map. Confirm "
-            "that the reference is the same product model and "
-            "verify the suspected defect manually."
+            "Review the product for discoloration and other suspected defects."
+            if is_anomaly
+            else "Continue with normal inspection procedures."
         ),
+        "discoloration_score": color_diagnostic["discoloration_score"],
+        "yellow_pixel_ratio": color_diagnostic["yellow_pixel_ratio"],
+        "brown_pixel_ratio": color_diagnostic["brown_pixel_ratio"],
     }
-
-
 
 # --------------------------------------------------
 # BASIC ENDPOINTS
@@ -650,3 +720,62 @@ def get_analytics():
             dict(row) for row in batches
         ],
     }
+
+
+# --------------------------------------------------
+# PATCHCORE MODEL CONFIGURATION
+# --------------------------------------------------
+
+
+PATCHCORE_CHECKPOINT = (
+    DATA_DIR
+    / "patchcore_multi_product_v2_results"
+    / "Patchcore"
+    / "q_insight_multi_product_v2"
+    / "v0"
+    / "weights"
+    / "lightning"
+    / "model.ckpt"
+)
+
+# Temporary diagnostic threshold from the v2 evaluation.
+# This threshold is not yet validated for deployment.
+PATCHCORE_THRESHOLD = 50.0
+
+_patchcore_model = None
+
+
+def load_patchcore_model():
+    """Load the trained single-switch PatchCore model once."""
+    global _patchcore_model
+
+    if _patchcore_model is not None:
+        return _patchcore_model
+
+    if not PATCHCORE_CHECKPOINT.is_file():
+        raise FileNotFoundError(
+            f"PatchCore checkpoint not found: {PATCHCORE_CHECKPOINT}"
+        )
+
+    import torch
+    from anomalib.models import Patchcore
+
+    model = Patchcore(
+        backbone="wide_resnet50_2",
+        layers=("layer2", "layer3"),
+        pre_trained=True,
+        coreset_sampling_ratio=0.1,
+        num_neighbors=9,
+    )
+
+    checkpoint = torch.load(
+        PATCHCORE_CHECKPOINT,
+        map_location="cpu",
+        weights_only=False,
+    )
+    model.load_state_dict(checkpoint["state_dict"], strict=True)
+    model.eval()
+    model.to("cpu")
+
+    _patchcore_model = model
+    return _patchcore_model

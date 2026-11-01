@@ -49,3 +49,42 @@ data/real_switch_pilot/
 
 # Local synthetic datasets and prepared splits
 data/single_switch_v1/
+
+# Additional generated PatchCore experiments
+data/patchcore_multi_product_v2_results/
+data/patchcore_multi_product_v2_evaluation/
+data/patchcore_multi_product_v2_diagnostic.csv
+data/multi_product_v2_evaluation.csv
+data/combined_validation_results.csv
+
+# Generated databases and runtime files
+*.db
+*.sqlite
+*.sqlite3
+*.log
+
+# Python test and tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environment variables and secrets
+.env.*
+!.env.example
+
+# Multi-product training datasets and generated model outputs
+data/anomalib_multi_product_v1/
+data/patchcore_multi_product_v1_results/
+data/patchcore_multi_product_v2_results/
+data/patchcore_multi_product_v2_evaluation/
+
+# Local inspection uploads and reports
+data/uploads/
+data/report_inspection.txt
+
+# Generated contact sheets
+backend/real_clean_contact_sheet.jpg
+backend/validation_good_contact_sheet.jpg
+
+# Local project inventory
+project_files.txt
