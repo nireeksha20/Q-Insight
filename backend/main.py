@@ -1,5 +1,4 @@
-﻿
-import base64
+﻿import base64
 import sqlite3
 import uuid
 from datetime import datetime, timezone
@@ -43,10 +42,12 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
+        "https://q-insight-2026.web.app",
+        "https://q-insight-2026.firebaseapp.com",
         "http://localhost:5173",
         "http://127.0.0.1:5173",
     ],
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )

@@ -4,6 +4,30 @@ Q-Insight is a computer-vision-based quality inspection prototype that analyzes 
 
 **Project status:** Working prototype · Human verification required
 
+## 🚀 Live Demo
+
+**Deployed Application:** https://q-insight-2026.web.app
+
+Q-Insight is an AI-assisted manufacturing quality inspection system designed to analyze product images, identify potential defects, and support quality-control decisions through inspection history and analytics.
+
+> **Note:** The live demo uses a locally hosted FastAPI backend exposed through a temporary Cloudflare Quick Tunnel. The backend and tunnel must remain running for inspection and analytics features to work.
+
+## ✨ Key Features
+
+- **AI-Assisted Visual Inspection** — Analyze product images for potential anomalies.
+- **Defect Visualization** — View inspection results and visual comparisons.
+- **Inspection History** — Review saved inspection records.
+- **Quality Analytics** — Track inspection counts and flagged results by production batch.
+- **Human Review Support** — Flag suspicious or uncertain results for further verification.
+
+## 🛠️ Technology Stack
+
+- **Frontend:** React, Vite
+- **Backend:** Python, FastAPI
+- **Image Processing:** OpenCV, PyTorch, PatchCore
+- **Database:** SQLite
+- **Deployment:** Firebase Hosting
+
 ## Key Features
 
 - **AI anomaly detection:** Uses PatchCore with a Wide ResNet-50-2 backbone to identify potential visual defects.
